@@ -1,46 +1,43 @@
 # tonypi_line_following_control
-# 功能介绍
+# Function Introduction
 
-该功能包通过接收引导线识别节点的消息，控制机器人自动巡线
+This package controls the robot to automatically follow the line by receiving messages from the line detection node.
 
-# 使用方法
+# Usage
 
-## 准备工作
+## Preparations
 
-1. 具备TonyPi机器人，包含机器人本体、相机及RDK套件，并且能够正常运行。
+1. Have a TonyPi robot, including the robot body, camera, and RDK suite, and ensure it runs normally.
 
-## 安装功能包
+## Install the Package
 
-**1.安装功能包**
+**1. Install the package**
 
-启动机器人后，通过终端SSH或者VNC连接机器人，点击本页面右上方的“一键部署”按钮，复制如下命令在RDK的系统上运行，完成相关Node的安装。
+After starting the robot, connect to the robot through terminal SSH or VNC, click the "One-click Deployment" button at the top right of this page, copy the following command to run on the RDK system to complete the installation of the relevant Node.
 
 ```bash
 sudo apt update
 sudo apt install -y tros-tonypi-line-following-control
 ```
-
-**2.运行自动巡线功能**
+**2. Run the Task Decomposition Function**
 
 ```shell
 source /opt/tros/local_setup.bash
 
 ros2 launch tonypi_line_following_control line_follower_control.launch.py
-
 ```
 
+# Interface Description
 
-# 接口说明
+## Topics
 
-## 话题
+### Subscribed Topics
 
-### Sub话题
-| 名称                          | 消息类型                                                     | 说明                                                   |
-| ----------------------------- | ------------------------------------------------------------ | ------------------------------------------------------ |
-| line_center_detection      | ai_msgs::msg::PerceptionTargets        | 接收引导线中点的位置消息                  |
+|Name  | Type                                  |  Description           |
+|------| --------------------------------------| --------------------------------|
+|line_center_detection	|ai_msgs::msg::PerceptionTargets	|Receives messages about the position of the line midpoint|
 
-## 参数
-
-| 参数名                | 类型        | 说明   |
+## Parameters
+| Parameter Name             | Type       | Description  |
 | --------------------- | ----------- | ----------------------------------------------------- |
-| sub_topic    | string |    接收的引导线中点位置消息名称，请根据实际发布的话题名称配置，默认值为/line_center_detection |
+| sub_topic	| string	| Name of the subscribed topic for receiving messages about the position of the line midpoint. Configure according to the actual published topic name. Default value is /line_center_detection|
